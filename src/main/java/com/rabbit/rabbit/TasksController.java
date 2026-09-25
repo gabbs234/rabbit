@@ -3,6 +3,7 @@ package com.rabbit.rabbit;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.springframework.scheduling.config.Task;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,25 +12,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController 
 public class TasksController {
     
-    private List<Tasks> tasks = new ArrayList<>(List.of(
-        new Tasks (1L, "Task 3", false),
-        new Tasks (1L, "Task 4", true)
-    ));
-    
+   private final TaskRepository taskRepository;
+   public TasksController(TaskRepository taskRepository){
+        this.taskRepository = taskRepository; 
+   }
     
     
     @GetMapping ("/tasks")
     public List <Tasks> getTasks(){
-        return tasks;
+        return taskRepository.findAll();
     
 
         }
 
         @PostMapping ("/tasks/add")
         public List<Tasks> addTasks(@RequestBody Tasks newTask){
-            tasks.add(newTask);
-            return tasks;
-            
+            taskRepository.save(newTask);
+            return taskRepository.findAll();
         }
     
 }
