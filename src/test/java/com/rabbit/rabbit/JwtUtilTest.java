@@ -7,7 +7,7 @@ import io.jsonwebtoken.JwtException;
  class JwtUtilTest {
 @Test 
 void tokenContainsUsername() {
-    JwtUtil jwtUtil = new JwtUtil();
+    JwtUtil jwtUtil = new JwtUtil("test-secret-that-is-atleast-32-characters-long");
     String token = jwtUtil.generateToken("testuser");
     String name = jwtUtil.extractUsername(token);
 
@@ -16,7 +16,7 @@ void tokenContainsUsername() {
 
     @Test
     void fakeTokenIsRejected(){
-        JwtUtil jwtUtil = new JwtUtil();
+        JwtUtil jwtUtil = new JwtUtil("test-secret-that-is-atleast-32-characters-long");
        
         assertThrows(JwtException.class, () ->{
             jwtUtil.extractUsername("not-a-real-token");

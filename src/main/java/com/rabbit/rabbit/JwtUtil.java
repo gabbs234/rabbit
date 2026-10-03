@@ -4,14 +4,19 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+//import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import java.util.Date;
 import javax.crypto.SecretKey;
 
 @Component 
 public class JwtUtil {
 
-    private final SecretKey key = Keys.hmacShaKeyFor(
-        "this-is-s-much-longer-secret-key-for-jwt-generation-please-change-it".getBytes());
+    private final SecretKey key;
+    public  JwtUtil(@Value("${jwt.secret}") String secret) {
+        this.key = Keys.hmacShaKeyFor(secret.getBytes());
+    }
+    
     public String generateToken(String username) {
         return Jwts.builder()
         .subject(username)
