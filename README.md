@@ -38,17 +38,13 @@ https://rabbit-ejyl.onrender.com
 
  ## API Endpoints
 
- ----------------------------------------------------------
-| Method | Path         | Auth  | Description              |
-|--------|--------------|----------------------------------|
-| POST   | /auth/register| No    | Create a new user       |
-|--------|-------------------------------------------------|
-| POST   | /auth/login   | No    | Login and receive a JWT |
-|--------|-----------------------------------------------  |
-| GET    | /tasks        | Yes    | List tasks             |
-|----------|-----------------------------------------------|
-| POST    | /tasks        | Yes    | Create a task         |
-|----------|-----------------------------------------------|
+ 
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| POST | `/auth/register` | No | Create a new user |
+| POST | `/auth/login` | No | Log in and receive a JWT |
+| GET | `/tasks` | Yes | List tasks |
+| POST | `/tasks` | Yes | Create a task |
 
 ## Example
 
