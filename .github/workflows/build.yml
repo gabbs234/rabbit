@@ -1,0 +1,39 @@
+name: Build and test
+on:
+  push:
+    branches:
+      - [master]
+  pull_request:
+    branches:
+      - master
+  job:
+    build:
+      runs-on: ubuntu-latest
+      services:
+        postgres:
+          image: postgres:16
+          env:
+            POSTGRES_USER: myuser
+            POSTGRES_PASSWORD: mypassword
+            POSTGRES_DB: rabbit
+          ports:
+            - 5432:5432
+          options: >-
+            --health-cmd "pg_isready -U ???"
+            --health-interval 5s
+            --health-timeout 5s
+            --health-retries 10
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-java@v4
+          with: distribution: 'temurin'
+                java-version: '21'
+                cache: 'maven'
+        - name: Build and test
+          run: ./mvnw verify 
+          env:
+            SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/rabbit
+            SPRING_DATASOURCE_USERNAME: myuser
+            SPRING_DATASOURCE_PASSWORD: mypassword
+            JWT_SECRET: MY-SECRET-IDONKNOWANYMORWEWQDHFDTBFDSWEGQDFVJIOL,NTECVBHRTKMBFEBBNVCBNGHBVEBFGDFGNHGHNNGFDVBBFGFVVBBB   
+            
