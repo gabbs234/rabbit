@@ -1,3 +1,5 @@
+[![Build and test](https://github.com/gabbs234/rabbit/actions/workflows/build.yml/badge.svg)](https://github.com/gabbs234/rabbit/actions/workflows/build.yml)
+
 ## RABBIT 
 
 A task manager REST API built with Spring Boot, secured with JWT authentication, backed by PostgreSQL and containerized with Docker and deployed on Render.
