@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbit
+  template:
+    metadata:
+      labels:
+        app: rabbit
+    spec:
+      containers:
+        - name: rabbit
+          image: rabbit:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_URL
+              value: "jdbc:postgresql://postgres:5432/rabbit"
+            - name: DB_USERNAME
+              value: "myuser"
+            - name: DB_PASSWORD
+              value: "1111"
+            - name: JWT_SECRET
+              value: "qwewrtfagajhsdtyshkszkaja-jaghsgertduyfnsns-snsbaghsagxdshahshgdgwsaadd-wjshdghdfhd"
