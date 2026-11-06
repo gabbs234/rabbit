@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: grafana_              # grafana
+  name: grafana             # grafana
 spec:
   selector:
     app: grafana           # must match the pod label
