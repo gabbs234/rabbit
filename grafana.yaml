@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana     # grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana           # grafana
+  template:
+    metadata:
+      labels:
+        app: grafana        # same label again
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:11.1.0
+          ports:
+            - containerPort: 3000    # Grafana's web port
+          resources:
+            limits:
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana_              # grafana
+spec:
+  selector:
+    app: grafana           # must match the pod label
+  ports:
+    - port: 3000
+      targetPort: 3000
