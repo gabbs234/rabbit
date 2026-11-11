@@ -58,32 +58,32 @@ These examples assume the app is running at `http://localhost:8080`.
 Register a user:
 
 ```bash
-curl -X POST http://localhost:8080/auth/register \
-  -H "Content-Type: application/json" \
+curl -X POST http://localhost:8080/auth/register 
+  -H "Content-Type: application/json" 
   -d '{"username":"john","password":"secret123"}'
 ```
 
 Log in and copy the token from the response:
 
 ```bash
-curl -X POST http://localhost:8080/auth/login \
-  -H "Content-Type: application/json" \
+curl -X POST http://localhost:8080/auth/login 
+  -H "Content-Type: application/json" 
   -d '{"username":"john","password":"secret123"}'
 ```
 
 Create a task:
 
 ```bash
-curl -X POST http://localhost:8080/tasks/add \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -H "Content-Type: application/json" \
+curl -X POST http://localhost:8080/tasks/add 
+  -H "Authorization: Bearer YOUR_TOKEN" 
+  -H "Content-Type: application/json" 
   -d '{"title":"Write my README"}'
 ```
 
 List tasks:
 
 ```bash
-curl http://localhost:8080/tasks \
+curl http://localhost:8080/tasks 
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
@@ -127,8 +127,8 @@ curl http://localhost:8080/tasks \
 
 ```bash
 docker build -t rabbit .
-docker run --network host \
-  -e DB_URL=... -e DB_USERNAME=... -e DB_PASSWORD=... -e JWT_SECRET=... \
+docker run --network host 
+  -e DB_URL=... -e DB_USERNAME=... -e DB_PASSWORD=... -e JWT_SECRET=... 
   rabbit
 ```
 
